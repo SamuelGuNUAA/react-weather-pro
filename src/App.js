@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import logo from './logo.svg';
 //import './App.css';
-import Header from './Header';
-import Footer from './Footer';
-import WeatherChannel from './WeatherChannel';
+import Header from './weather/Header';
+import Footer from './weather/Footer';
+import WeatherChannel from './weather/WeatherChannel';
 //import './index.css';
 
 
-class App extends Component {
+export default function App(props) {
 
-  render() {
     return (
       <div className="App">
-        <body>
-          <div id="wrapper">
-        <Header />
-
-        <WeatherChannel />
-        <Footer />
-          </div>
-        </body>
+        <div id="wrapper">
+          <Header />
+          <WeatherChannel />
+          <Footer />
+        </div>
       </div>
     );
-  }
 }
 
-export default App;
