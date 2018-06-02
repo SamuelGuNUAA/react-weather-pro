@@ -6,19 +6,16 @@ const CONDITION_BASE_URL = 'http://api.wunderground.com/api/f029e46fd0232d12/geo
 const FORECAST_BASE_URL = 'http://api.wunderground.com/api/f029e46fd0232d12/geolookup/forecast10day/q/Australia/';
 
 
-export function FetchWeatherByCity(cityName, callback){
+export function FetchWeatherByCity(cityName){
 
-    let weatherConditionURL = `${CONDITION_BASE_URL}${cityName}.json`;
-    //console.log(cityName);
-    fetch(weatherConditionURL).then(res=>{
-        //console.log(res.json());
-        return res.json();
-    }).then(json=>{
-        //console.log('parsed json', json.current_observation.display_location.full)
-        callback(json.current_observation);  
-    }).catch(ex=>{
-        console.log('parsing failed', ex)
-    });      
+    return  fetch(`${CONDITION_BASE_URL}${cityName}.json`).then(res=>{
+                return res.json();
+            }).then(json=>{
+                //console.log('parsed json', json.current_observation)
+                return json.current_observation;  
+            }).catch(ex=>{
+                console.log('parsing failed', ex)
+            })
 }
 
 export function FetchWeatherByCityForecast(cityName, callback){

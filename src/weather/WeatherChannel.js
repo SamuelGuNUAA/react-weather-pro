@@ -24,7 +24,7 @@ class WeatherChannel extends React.Component{
 
     //updating this.state
     handleConditionData(data){
-        console.log('got condition data from api:',data);
+        console.log('got condition data from api1:',data);
         const condition={
             location:data.display_location.full,
             weather:data.weather,
@@ -34,7 +34,7 @@ class WeatherChannel extends React.Component{
     }
 
     handleForecastData(data){
-        console.log('got forecast data from api:',data);
+        console.log('got forecast data from api2:',data);
         const forecast = data.forecast.simpleforecast.forecastday;
         //console.log(forecast);
         
@@ -56,8 +56,17 @@ class WeatherChannel extends React.Component{
 
 
     Load(){
+        let city2=this.state.userInput;
+        if(this.state.userInput === undefined || this.state.userInput === '')
+            city2='brisbane';
         //GET from API with json data callback
-        FetchWeatherByCity(this.state.userInput, (data) => {this.handleConditionData(data)});
+        //FetchWeatherByCity(city2, (data) => {this.handleConditionData(data)});
+        FetchWeatherByCity(city2).then((json) => {
+            this.handleConditionData(json)
+        }).catch(err =>{
+            console.log('json data return fail', err);
+        });
+
         FetchWeatherByCityForecast(this.state.userInput, (data) => {this.handleForecastData(data)});
 
         //Clear last Input
@@ -74,7 +83,12 @@ class WeatherChannel extends React.Component{
 
     componentDidMount(){
         //default get 'brisbane'
-        FetchWeatherByCity(this.state.defaultCity, (data) => {this.handleConditionData(data)});
+        FetchWeatherByCity(this.state.defaultCity).then(data => {
+            this.handleConditionData(data);
+        }).catch(err => {
+            console.log('initial fail'+ err);
+        });
+
         FetchWeatherByCityForecast(this.state.defaultCity, (data) => {this.handleForecastData(data)});
     }
 
