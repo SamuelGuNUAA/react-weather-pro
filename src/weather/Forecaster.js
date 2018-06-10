@@ -14,7 +14,7 @@ function DailyItem(props){
 
 export default function Forecaster(props){
 		//console.log(props.forecast);
-		let newForecast=props.forecast.slice(0,props.showDays ? 10 : 5);
+		let newForecast=props.forecast.slice(0,(props.showDays==='5') ? 5 : 10);
 		//console.log(newForecast);
         return (			
 			newForecast.map(

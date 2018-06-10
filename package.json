@@ -1,7 +1,7 @@
 {
   "name": "react-weather-pro",
   "version": "0.1.0",
-  "homepage": "https://samuelgunuaa.github.io/react-weather-pro/",
+  "homepage": "https://samuelgunuaa.github.io/react-weather-pro",
   "private": true,
   "dependencies": {
     "ajv": "^6.0.0",

@@ -97,19 +97,71 @@ nav {
   background-color: #1f69be;
   padding: 10px 2%; }
   nav input {
-    width: 100px;
+    width: 150px;
     padding: 5px 0 5px 10px;
     border: 1px solid #fff;
-    border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.5); }
   nav button {
     border: 1px solid #fff;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, white 60%, rgba(255, 255, 255, 0.6) 100%);
     border-radius: 5px;
     padding: 5px 10px;
-    margin-left: 4%; }
+    margin-left: 1%; 
+  }
+  nav .radioLocation{
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  nav .radioWidth{
+    width: 20px;
+  }
+
+  .test1:after{
+    clear: both;
+    content: "";
+    display: table;
+  }
+ .FLL{
+   float: left;
+ }
+ nav p{
+  font-size: 80%;
+  padding-top: 3px;
+ }
 
 /*end nav*/
+.Unit_FlexLayout{
+  
+  display: flex;
+  flex-direction: row;
+  margin-left: 25%;
+}
+.Btn_FlexLayout{
+  display: flex;
+  flex-direction: column;
+}
+.unit_btn {
+  border: none;
+  font-weight: bold;
+  font-size: 250%;
+  text-align: center;
+  padding: 0;
+  line-height: 50px;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+}
+.button_up{
+  color: #c1cbd6;
+}
+.button_down{
+  color: #1f69be;
+}
+.unit_btn:focus {
+  outline: none;
+}
 /* MAIN  */
 main {
   min-height: 5em; }
@@ -165,12 +217,17 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  text-align: left;
   padding: 1em;
   background-color: #1a9835;
   color: #fff;
   font-size: .9rem; }
 
+.CityRoll_Location{
+  padding: 10px;
+  font-size: 120%;
+  text-align: end;
+}
 /* OTHER */
 div.keepOpen {
   clear: both; }

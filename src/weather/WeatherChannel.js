@@ -18,8 +18,23 @@ class WeatherChannel extends React.Component{
             desc:'updating...',
             condition:{},
             forecast:[],
-            showDays:true
+            showDays:'5',
+            temperatureSwitchC: 'tc',
         };
+
+        this.change();
+    }
+
+    change(){
+        setInterval(() => {
+            FetchWeatherByCity(this.state.defaultCity).then(data => {
+                this.handleConditionData(data);
+            }).catch(err => {
+                console.log('initial fail'+ err);
+            });
+    
+            FetchWeatherByCityForecast(this.state.defaultCity, (data) => {this.handleForecastData(data)});
+        }, 1000*60*5);
     }
 
     //updating this.state
@@ -28,7 +43,8 @@ class WeatherChannel extends React.Component{
         const condition={
             location:data.display_location.full,
             weather:data.weather,
-            temperature:data.temp_c + ' °c'            
+            temperatureC:data.temp_c + ' °',
+            temperatureF:data.temp_f + ' °',    
         };
         this.setState({condition});
     }
@@ -75,12 +91,6 @@ class WeatherChannel extends React.Component{
         });
     }
     
-    ShowDays(){
-        this.setState({
-            showDays:!this.state.showDays
-        });
-    }
-
     componentDidMount(){
         //default get 'brisbane'
         FetchWeatherByCity(this.state.defaultCity).then(data => {
@@ -93,19 +103,35 @@ class WeatherChannel extends React.Component{
     }
 
     render(){
-
+        console.log(typeof(this.state.temperatureSwitchC));
+        //console.log(this.state.condition.temperatureF);
+        //<div className="radioLocation" onChange={() => this.setState({temperatureSwitchC: !this.state.temperatureSwitchC})}>
         return (
             <div>
                 <nav>
                     <input value ={this.state.userInput} 
                             onChange={(e) => this.setState({userInput:e.target.value})} />
-                    <button onClick={() => {this.Load()}}>Load</button>
-                    <button onClick={() => {this.ShowDays()}}>{this.state.showDays ? '5 days' : '10 days'}</button>
+                    <button onClick={() => {this.Load()}}>Search</button>
+
+                    <div className="radioLocation">
+                        <div className="test1" onChange={(e) => this.setState({showDays: e.target.value})}>
+                            <input className="radioWidth FLL" type="radio" defaultChecked={this.state.showDays === '5'} value='5' name='showDays' />
+                            <p className="FLL">Show 5 Days</p>
+                            <input className="radioWidth FLL" type="radio" defaultChecked={this.state.showDays === '10'} value='10' name='showDays' />
+                            <p className="FLL">Show 10 Days</p>
+                        </div>
+                        <div className="test1" onChange={(e) => this.setState({temperatureSwitchC: e.target.value})}>
+                            <input className="radioWidth FLL" type="radio" defaultChecked={this.state.temperatureSwitchC === 'tc'} value='tc' name='temperSwitch' />
+                            <p className="FLL">°C</p>
+                            <input className="radioWidth FLL" type="radio" defaultChecked={this.state.temperatureSwitchC === 'tf'} value='tf' name='temperSwitch' />
+                            <p className="FLL">°F</p>
+                        </div>
+                    </div>
                 </nav>
 
                 <main>
                     <section id="left">
-                        <CityCondition current={this.state.condition} desc={this.state.desc}/>
+                        <CityCondition current={this.state.condition} desc={this.state.desc} temper={this.state.temperatureSwitchC=='tc' ? this.state.condition.temperatureC : this.state.condition.temperatureF} />
                     </section>
                     <section id="right">
                         <Forecaster forecast={this.state.forecast} showDays={this.state.showDays}/>    
