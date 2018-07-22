@@ -4,14 +4,8 @@ import '../index.css';
 
 import {FetchWeatherByCity, FetchWeatherByCityForecast} from '../api/weather';
 
-function CityConditionRoll(props){
-    console.log(props.current);
-    return(
-            <div className="CityRoll_Location">{props.current.location}: {props.current.weather} {props.current.temperatureC}</div>
-    );
-}
-
-class Footer extends React.Component{
+const CityArry=['Melbourne', 'Sydney', 'Gold Coast', 'Wuxi']
+export default class CityConditionRoll extends React.Component{
     constructor(props) {
         super(props);
         this.state={
@@ -22,7 +16,7 @@ class Footer extends React.Component{
 
     componentDidMount(){
         //default get 'brisbane'
-        FetchWeatherByCity('Brisbane').then(data => {
+        FetchWeatherByCity(CityArry[CityArry.length-1]).then(data => {
             this.handleConditionData(data);
         }).catch(err => {
             console.log('initial fail'+ err);
@@ -40,7 +34,7 @@ class Footer extends React.Component{
     }
     
     CityRoll(){
-        const CityArry=['Beijing', 'Gold Coast', 'Wuxi']
+        
         let i=0;
         setInterval(() => {
             FetchWeatherByCity(CityArry[i]).then(data => {
@@ -48,18 +42,13 @@ class Footer extends React.Component{
             }).catch(err => {
                 console.log('initial fail'+ err);
             });
-            (i===2) ? (i=0) : i++;
-        }, 1000*5);
+            (i === CityArry.length) ? (i=0) : i++;
+        }, 1000*6);
     }
 
     render(){
         return (
-            <footer>
-                <p>Fullstack Web Dev 101  Samuel Gu</p>
-                <CityConditionRoll current={this.state.condition}/>
-            </footer>
+            <div className="CityRoll_Location">{this.state.condition.location}: {this.state.condition.weather} {this.state.condition.temperatureC}</div>
         );
     }
 }
-
-export default Footer;

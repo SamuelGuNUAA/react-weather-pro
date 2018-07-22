@@ -1,22 +1,43 @@
 import React from 'react';
-//import logo from './logo.svg';
-//import './App.css';
-import Header from './weather/Header';
-import Footer from './weather/Footer';
-import WeatherChannel from './weather/WeatherChannel';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import './App.css';
+import Header from './App/Header';
+import Footer from './App/Footer';
+
 //import './index.css';
+import green from '@material-ui/core/colors/green';
+
+import Content from './App/Content';
+
+const primary = green[100];
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: "none"
+  }
+});
 
 
-export default function App(props) {
-
+function App(props) {
+  const { classes } = props;
     return (
       <div className="App">
         <div id="wrapper">
           <Header />
-          <WeatherChannel />
+          <Content />
           <Footer />
         </div>
       </div>
     );
 }
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);
 

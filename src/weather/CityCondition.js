@@ -19,8 +19,8 @@ class CityCondition extends React.Component{
             b='F';
         }
         this.setState({
-            UnitUp:a, 
-            UnitDown:b
+            UnitUp: a, 
+            UnitDown: b
         });
         
     }
@@ -32,27 +32,27 @@ class CityCondition extends React.Component{
     }
     */
     render(){
-        //console.log(this.props.temper);
-        
+        //console.log("TT-3",this.props.desc);
+        const { temperatureC, temperatureF } = this.props.current;
     
-    return( 
-        <div>
-	        <div id="location">{this.props.current.location}</div>
-	        <div id="weather">{this.props.current.weather}</div>
-            <div className="Unit_FlexLayout">
-	            <div id="temperature">{this.props.temper}</div>
-                <div className="Btn_FlexLayout">
-                    <div>
-                    <button className="unit_btn button_up" onClick={() => this.UnitSwich()}>{this.state.UnitUp}</button>
-                    </div>
-                    <div>
-                    <button className="unit_btn button_down">{this.state.UnitDown}</button>
+        return( 
+            <div>
+                <div id="location">{this.props.current.location}</div>
+                <div id="weather">{this.props.current.weather}</div>
+                <div className="Unit_FlexLayout">
+                    <div id="temperature">{(this.state.UnitDown === 'C') ? temperatureC : temperatureF }</div>
+                    <div className="Btn_FlexLayout">
+                        <div>
+                            <button className="unit_btn button_up" onClick={() => {this.UnitSwich(); this.props.transferTempSwitch(this.state.UnitUp)}}>{this.state.UnitUp}</button>
+                        </div>
+                        <div>
+                            <button className="unit_btn button_down">{this.state.UnitDown}</button>
+                        </div>
                     </div>
                 </div>
+                <div id="desc">{(this.state.UnitDown === 'C') ? this.props.desc.fcttext_metric : this.props.desc.fcttext}</div>
             </div>
-            <div id="desc">{this.props.desc}</div>
-        </div>
-    );
+        );
     }
 }
 

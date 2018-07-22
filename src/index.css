@@ -61,7 +61,9 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #666;
-  background-color: #fff; }
+  background-color: #ececec; 
+
+}
 
 div#wrapper {
   height: 100vh;
@@ -70,7 +72,7 @@ div#wrapper {
 
 /* HEADER  */
 header {
-  background-color: #1a9835;
+  background-color: #54cc6e;
   padding: .5rem 0 .5rem 2%; }
 
 header h1, header h2 {
@@ -94,41 +96,17 @@ header figure img {
   width: 100%; }
 
 nav {
-  background-color: #1f69be;
+  background-color: rgba(155, 201, 219, 0.867);
   padding: 10px 2%; }
-  nav input {
-    width: 150px;
-    padding: 5px 0 5px 10px;
-    border: 1px solid #fff;
-    background-color: rgba(255, 255, 255, 0.5); }
-  nav button {
-    border: 1px solid #fff;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, white 60%, rgba(255, 255, 255, 0.6) 100%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 1%; 
-  }
+
   nav .radioLocation{
-    color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
   }
-  nav .radioWidth{
-    width: 20px;
-  }
 
-  .test1:after{
-    clear: both;
-    content: "";
-    display: table;
-  }
  .FLL{
-   float: left;
- }
- nav p{
-  font-size: 80%;
-  padding-top: 3px;
+   float: right;
  }
 
 /*end nav*/
@@ -219,7 +197,7 @@ footer {
   width: 100%;
   text-align: left;
   padding: 1em;
-  background-color: #1a9835;
+  background-color: #54cc6e;
   color: #fff;
   font-size: .9rem; }
 
@@ -238,11 +216,11 @@ div.keepOpen {
     width: 50%; } }
 @media only screen and (min-width: 800px) {
   div#wrapper {
-    max-width: 800px;
+    max-width: 1024px;
     margin: 3rem auto 0 auto;
     border: 1px solid #666;
     height: auto;
-    box-shadow: 5px 5px 10px #999; }
+    box-shadow: 10px 10px 10px #999; }
 
   footer {
     clear: both;

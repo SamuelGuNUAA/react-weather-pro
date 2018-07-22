@@ -4,6 +4,7 @@
   "homepage": "https://samuelgunuaa.github.io/react-weather-pro",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.2.0",
     "ajv": "^6.0.0",
     "get-mac-address": "^1.0.0",
     "gh-pages": "^1.2.0",
